@@ -6,6 +6,7 @@ const express = require('express'), cors = require('cors');
 const { MongoClient } = require('mongodb');
 const app = express(); app.set('trust proxy', 1);
 app.use(cors({ origin: process.env.ALLOWED_ORIGIN || '*' })); app.use(express.json({ limit: '100kb' }));
+app.use(express.static('public'));
 const KEY = process.env.GEMINI_API_KEY, MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 if (!KEY) { console.error('Set GEMINI_API_KEY'); process.exit(1); }
 
